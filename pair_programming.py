@@ -1,42 +1,24 @@
 #Option 1. Takes two values (feet and inches) and converts to meters
 
+
+#function
+def meters(feet, inches):
+
+    if feet.isalpha() == True or inches.isalpha() == True: #check for alpha values
+        print('Please input a number for feet and inches')
+        feet = input('feet: ')
+        inches = input('inches: ')
+        return meters(feet, inches)
+    #do calculations
+    feet_meters = float(feet) * 0.3048
+    inches_meters = float(inches) * 0.0254
+    value = feet_meters + inches_meters
+
+    return value
+
+print('Hello! this is a feet/inches to meter conversion')
 #Ask for feet and inches input
-string = input("\nHello! Welcome to the feet/inches to meters conversion. \n To start, please type a measurement in this form: 'feet inches' use numbers and type '0' if none for either.\n ex. '0 13' or '2 0' or '5.3 1' \n")
-
-
-#FUNCTION TO CHECK FORMAT OF STRING
-def check(string):
-    #check for letters
-    for n in string:
-        if n.isalpha() == True:
-            string = input("\nYour input must be numbers: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
-            return check(string) ##if contains a letter, new input -> run function again
-        
-    #split the string into a list: [feet, inches]
-    if ' ' not in string: #checks if format is mostly correct
-        string = input("\nYou must input a string in this format: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex. '0 2' or '2 0'. \n Please input a new string: ")
-        return check(string)
-    list = string.split()
-
-    if len(list) != 2: #checks if there are two values
-        string = input("\nYour input must have exatly two values: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
-        return check(string) #if not two values, new input -> run function again
-    
-    return list
-
-
-#convert strings to floats
-#assign variables to feet value and inches value
-list = check(string)
-feet = float(list[0])
-inches = float(list[1])
-
-#compute conversion
-feet_meters = feet * 0.3048
-inches_meters = inches * 0.0254
-
-#sum the feet component to inches component to get final value
-meters = feet_meters + inches_meters
-
-#result
-print(f'\nFeet to meter conversion complete. \nInput: {feet} feet and {inches} inches. \nFinal result: {round(meters, 4)} meters')
+feet = input('feet: ')
+inches = input('inches: ')
+#run function
+print(f' your input was {feet} feet and {inches} inches. Your result is {meters(feet, inches)} meters.')
