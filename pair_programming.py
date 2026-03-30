@@ -4,32 +4,31 @@
 
 #BASELINE DOWN. ERRORS WHEN LETTER INPUTTED INSTEAD OF NUMBER
 
-#Ask for feet an inches input
+#Ask for feet and inches input
 string = input("Hello! Welcome to the feet/inches to meters conversion. \n To start, please type a measurement in this form: 'feet inches' use numbers and type '0' if none for either.\n ex. '0 13' or '2 0' or '5.3 1' \n")
 
 
-#split the string into a list: [feet, inches]
-while ' ' not in string: #checks if format is mostly correct
-    string = input("You must input a string in this format: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex. '0 2' or '2 0'. \n Please input a new string: ")
-list = string.split()
-#print(list)
-#print(len(list))
-
-while len(list) !=2: #checks if there are two values in correct format
-    string = input("Your input must have exatly two values: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
+#FUNCTION TO CHECK FORMAT OF STRING
+def check(string):
+    #split the string into a list: [feet, inches]
+    while ' ' not in string: #checks if format is mostly correct
+        string = input("You must input a string in this format: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex. '0 2' or '2 0'. \n Please input a new string: ")
     list = string.split()
 
-#BREAKS HERE WHEN LETTER IS INPUTTED. While not working as intended.
-while (float(list[0]) == False) or (float(list[1]) == False): #checks if values are numbers
-    string = input("Your input must be numbers: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
-    list = string.split()
+    if len(list) == 2: #checks if there are two values
+        if (list[0].isalpha() == True) or (list[1].isalpha() == True): #checks if values are letters BAD
+            string = input("Your input must be numbers: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
+            return check(string) #if contains letters, new input -> run function again
+    else: #if not two values, new input -> run function again
+        string = input("Your input must have exatly two values: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
+        return check(string)
+    return list
 
 #convert strings to floats
 #assign variables to feet value and inches value
+list = check(string)
 feet = float(list[0])
-#print(f'feet:{feet}')
 inches = float(list[1])
-#print(f'inches:{inches}')
 
 #compute conversion
 feet_meters = feet * 0.3048
