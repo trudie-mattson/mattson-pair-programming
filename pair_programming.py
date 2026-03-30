@@ -5,24 +5,29 @@
 #BASELINE DOWN. ERRORS WHEN LETTER INPUTTED INSTEAD OF NUMBER
 
 #Ask for feet and inches input
-string = input("Hello! Welcome to the feet/inches to meters conversion. \n To start, please type a measurement in this form: 'feet inches' use numbers and type '0' if none for either.\n ex. '0 13' or '2 0' or '5.3 1' \n")
+string = input("\nHello! Welcome to the feet/inches to meters conversion. \n To start, please type a measurement in this form: 'feet inches' use numbers and type '0' if none for either.\n ex. '0 13' or '2 0' or '5.3 1' \n")
 
 
 #FUNCTION TO CHECK FORMAT OF STRING
 def check(string):
+    #check for letters
+    for n in string:
+        if n.isalpha() == True:
+            string = input("\nYour input must be numbers: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
+            return check(string) ##if contains a letter, new input -> run function again
+        
     #split the string into a list: [feet, inches]
-    while ' ' not in string: #checks if format is mostly correct
-        string = input("You must input a string in this format: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex. '0 2' or '2 0'. \n Please input a new string: ")
+    if ' ' not in string: #checks if format is mostly correct
+        string = input("\nYou must input a string in this format: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex. '0 2' or '2 0'. \n Please input a new string: ")
+        return check(string)
     list = string.split()
 
-    if len(list) == 2: #checks if there are two values
-        if (list[0].isalpha() == True) or (list[1].isalpha() == True): #checks if values are letters BAD
-            string = input("Your input must be numbers: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
-            return check(string) #if contains letters, new input -> run function again
-    else: #if not two values, new input -> run function again
-        string = input("Your input must have exatly two values: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
-        return check(string)
+    if len(list) != 2: #checks if there are two values
+        string = input("\nYour input must have exatly two values: 'feet inches' if you do not have feet, or do not have inches, please use a 0 to replace that value. \n ex: '0 2.3'or '2.5 0' \n Please input a new string: ")
+        return check(string) #if not two values, new input -> run function again
+    
     return list
+
 
 #convert strings to floats
 #assign variables to feet value and inches value
