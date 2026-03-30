@@ -1,8 +1,4 @@
 #Option 1. Takes two values (feet and inches) and converts to meters
-#Option 4. Takes an input array and returns values scaled to lie in the range of 0.0 to 1.0
-
-
-#BASELINE DOWN. ERRORS WHEN LETTER INPUTTED INSTEAD OF NUMBER
 
 #Ask for feet and inches input
 string = input("\nHello! Welcome to the feet/inches to meters conversion. \n To start, please type a measurement in this form: 'feet inches' use numbers and type '0' if none for either.\n ex. '0 13' or '2 0' or '5.3 1' \n")
