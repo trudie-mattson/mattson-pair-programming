@@ -3,8 +3,6 @@
 
 #function
 def meters(feet, inches):
-    feet = str(feet)
-    inches = str(inches)
     if feet.isalpha() == True or inches.isalpha() == True: #check for alpha values
         print('Please input a number for feet and inches')
         feet = input('feet: ')
